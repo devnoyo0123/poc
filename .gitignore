@@ -1,0 +1,51 @@
+# IDE
+.idea/
+.idea_modules/
+*.iml
+*.ipr
+*.iws
+.vscode/
+.DS_Store
+
+# Build
+build/
+target/
+out/
+*.class
+*.jar
+*.war
+*.ear
+
+# Gradle
+.gradle/
+gradle-app.setting
+!gradle-wrapper.jar
+.gradletasknamecache
+
+# Maven
+.mvn/
+mvnw
+mvnw.cmd
+
+# Logs
+*.log
+logs/
+
+# OS
+.DS_Store
+Thumbs.db
+*~
+
+# Temporary files
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+
+# Spring Boot
+spring-boot-starter-*.log
+
+# Test
+.gradle-test-kit/
+test-results/
