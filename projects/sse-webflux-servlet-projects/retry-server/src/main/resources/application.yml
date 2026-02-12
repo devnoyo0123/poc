@@ -1,0 +1,20 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: retry-server
+  jackson:
+    default-property-inclusion: non_null
+    serialization:
+      indent_output: true
+
+logging:
+  level:
+    com.example.retryserver: DEBUG
+    org.springframework.web: INFO
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+
+failure:
+  rate: 0.4  # 40% failure rate

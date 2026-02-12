@@ -1,0 +1,51 @@
+spring:
+  application:
+    name: webflux-queue-service
+
+  webflux:
+    base-path: /api/v1
+
+  data:
+    redis:
+      host: localhost
+      port: 6379
+      password: ${REDIS_PASSWORD:}
+
+  r2dbc:
+    url: r2dbc:postgresql://localhost:5432/queue_db
+    username: queue_user
+    password: ${DB_PASSWORD:queue_pass}
+    pool:
+      initial-size: 10
+      max-size: 50
+
+  flyway:
+    url: jdbc:postgresql://localhost:5432/queue_db
+    user: queue_user
+    password: ${DB_PASSWORD:queue_pass}
+    locations: classpath:db/migration
+    baseline-on-migrate: true
+
+queue:
+  max-size: 1000
+  processing-rate: 10  # items per minute
+  expiration-time: 1800  # seconds (30 minutes)
+  active-ttl: 300  # active 토큰 TTL (5분)
+  scheduler:
+    process-interval: 5000  # 5초마다 처리
+    batch-size: 10  # 한 번에 처리할 인원
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+  endpoint:
+    health:
+      show-details: always
+
+logging:
+  level:
+    com.example.queue: DEBUG
+    reactor.netty: INFO
+    io.r2dbc: DEBUG

@@ -1,0 +1,43 @@
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+  external_labels:
+    monitor: 'sse-performance-monitor'
+
+# Alertmanager configuration (optional)
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets: []
+
+# Rule files
+rule_files: []
+
+# Scrape configurations
+scrape_configs:
+  # Servlet Stack (Tomcat on port 8081)
+  - job_name: 'servlet-stack'
+    metrics_path: '/actuator/prometheus'
+    static_configs:
+      - targets: ['host.docker.internal:8081']
+        labels:
+          app: 'sse-servlet'
+          stack: 'servlet'
+    scrape_interval: 5s
+    scrape_timeout: 5s
+
+  # WebFlux Stack (Netty on port 8082)
+  - job_name: 'webflux-stack'
+    metrics_path: '/actuator/prometheus'
+    static_configs:
+      - targets: ['host.docker.internal:8082']
+        labels:
+          app: 'sse-webflux'
+          stack: 'webflux'
+    scrape_interval: 5s
+    scrape_timeout: 5s
+
+  # Prometheus itself
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']

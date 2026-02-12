@@ -1,0 +1,36 @@
+server:
+  port: 8081
+  tomcat:
+    threads:
+      max: 200              # Maximum threads for C10K support
+      min-spare: 10
+    max-connections: 10000  # Support C10K
+    accept-count: 1000
+    connection-timeout: 300000 # 5 minutes
+    keep-alive-timeout: 300000
+
+spring:
+  application:
+    name: servlet-stack
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus,metrics
+  metrics:
+    tags:
+      application: ${spring.application.name}
+      stack: servlet
+    export:
+      prometheus:
+        enabled: true
+  prometheus:
+    metrics:
+      export:
+        enabled: true
+
+logging:
+  level:
+    com.example.sse: INFO
+    org.springframework.web: INFO
