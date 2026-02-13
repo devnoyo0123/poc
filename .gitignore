@@ -49,3 +49,6 @@ spring-boot-starter-*.log
 # Test
 .gradle-test-kit/
 test-results/
+
+# OMC
+.omc/
