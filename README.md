@@ -9,10 +9,13 @@ poc/
 ├── README.md                    # This file
 ├── .gitignore                   # Common ignore rules
 ├── projects/                    # Individual POC projects
-│   ├── spring-cache-demo/       # Gradle project example
-│   ├── jpa-playground/          # Gradle multi-module project
-│   ├── maven-example/           # Maven project
-│   └── legacy-gradle/           # Legacy Gradle project
+│   ├── sse-webflux-servlet-projects/  # SSE WebFlux vs Servlet comparison
+│   ├── webflux-user-api/             # WebFlux user API
+│   ├── claude-archunit-automation/     # ArchUnit + Claude auto-fix automation
+│   ├── spring-cache-demo/            # Gradle project example
+│   ├── jpa-playground/               # Gradle multi-module project
+│   ├── maven-example/                # Maven project
+│   └── legacy-gradle/              # Legacy Gradle project
 └── docs/                        # Common documentation
     ├── project-list.md
     └── conventions.md
@@ -51,7 +54,13 @@ git add . && git commit -m "feat: add caching example"
 
 | Project | Build Tool | Description | Status |
 |---------|-----------|-------------|--------|
-| *To be added* | - | - | - |
+| [sse-webflux-servlet-projects](projects/sse-webflux-servlet-projects/) | Gradle (Kotlin DSL) | SSE comparison: WebFlux vs Servlet | ✅ Complete |
+| [webflux-user-api](projects/webflux-user-api/) | Gradle (Kotlin DSL) | Simple WebFlux user API | ✅ Complete |
+| [claude-archunit-automation](projects/claude-archunit-automation/) | Gradle (Kotlin DSL) | ArchUnit rules + Claude auto-fix automation | ✅ Complete |
+| spring-cache-demo | Gradle | Spring Cache examples | - |
+| jpa-playground | Gradle (multi-module) | JPA playground | - |
+| maven-example | Maven | Maven project example | - |
+| legacy-gradle | Gradle | Legacy Gradle project | - |
 
 ## Common Conventions
 
