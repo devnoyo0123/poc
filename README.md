@@ -10,6 +10,7 @@ poc/
 ├── .gitignore                   # Common ignore rules
 ├── projects/                    # Individual POC projects
 │   ├── sse-webflux-servlet-projects/  # SSE WebFlux vs Servlet comparison
+│   ├── webflux-sse-lab/              # WebFlux + R2DBC + jOOQ + SSE
 │   ├── webflux-user-api/             # WebFlux user API
 │   ├── claude-archunit-automation/     # ArchUnit + Claude auto-fix automation
 │   ├── spring-cache-demo/            # Gradle project example
@@ -55,6 +56,7 @@ git add . && git commit -m "feat: add caching example"
 | Project | Build Tool | Description | Status |
 |---------|-----------|-------------|--------|
 | [sse-webflux-servlet-projects](projects/sse-webflux-servlet-projects/) | Gradle (Kotlin DSL) | SSE comparison: WebFlux vs Servlet | ✅ Complete |
+| [webflux-sse-lab](projects/webflux-sse-lab/) | Gradle (Kotlin DSL) | WebFlux + R2DBC + jOOQ + SSE integration | ✅ Complete |
 | [webflux-user-api](projects/webflux-user-api/) | Gradle (Kotlin DSL) | Simple WebFlux user API | ✅ Complete |
 | [claude-archunit-automation](projects/claude-archunit-automation/) | Gradle (Kotlin DSL) | ArchUnit rules + Claude auto-fix automation | ✅ Complete |
 | spring-cache-demo | Gradle | Spring Cache examples | - |
