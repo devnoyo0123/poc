@@ -56,13 +56,22 @@ git add . && git commit -m "feat: add caching example"
 | Project | Build Tool | Description | Status |
 |---------|-----------|-------------|--------|
 | [sse-webflux-servlet-projects](projects/sse-webflux-servlet-projects/) | Gradle (Kotlin DSL) | SSE comparison: WebFlux vs Servlet | ✅ Complete |
+| [sse-performance-comparison](projects/sse-performance-comparison/) | - | SSE performance comparison | - |
 | [webflux-sse-lab](projects/webflux-sse-lab/) | Gradle (Kotlin DSL) | WebFlux + R2DBC + jOOQ + SSE integration | ✅ Complete |
 | [webflux-user-api](projects/webflux-user-api/) | Gradle (Kotlin DSL) | Simple WebFlux user API | ✅ Complete |
 | [claude-archunit-automation](projects/claude-archunit-automation/) | Gradle (Kotlin DSL) | ArchUnit rules + Claude auto-fix automation | ✅ Complete |
-| spring-cache-demo | Gradle | Spring Cache examples | - |
-| jpa-playground | Gradle (multi-module) | JPA playground | - |
-| maven-example | Maven | Maven project example | - |
-| legacy-gradle | Gradle | Legacy Gradle project | - |
+| [api-call-retry-save-poc](projects/api-call-retry-save-poc/) | - | API call retry with save POC | - |
+| [avro-poc](projects/avro-poc/) | Gradle (Kotlin DSL) | Apache Avro serialization POC | ✅ Complete |
+| [jobrunr-poc](projects/jobrunr-poc/) | Gradle (Groovy DSL) | JobRunr background job processing | ✅ Complete |
+| [jpa-capa-scheduler-poc](projects/jpa-capa-scheduler-poc/) | - | JPA capacity scheduler POC | - |
+| [jpa-concurrency-poc](projects/jpa-concurrency-poc/) | - | JPA concurrency POC | - |
+| [payment-sdk-kotlin](projects/payment-sdk-kotlin/) | - | Payment SDK in Kotlin | - |
+| [rate-limited-api-poc](projects/rate-limited-api-poc/) | - | Rate-limited API POC | - |
+| [resilience4j-retry-poc](projects/resilience4j-retry-poc/) | - | Resilience4j retry POC | - |
+| [resttemplate-async-comparison](projects/resttemplate-async-comparison/) | - | RestTemplate async comparison | - |
+| [royalty-excel-poc](projects/royalty-excel-poc/) | - | Royalty Excel processing POC | - |
+| [s3-sqs-localstack-poc](projects/s3-sqs-localstack-poc/) | - | S3 + SQS LocalStack POC | - |
+| [spring-batch-study](projects/spring-batch-study/) | - | Spring Batch study | - |
 
 ## Common Conventions
 
