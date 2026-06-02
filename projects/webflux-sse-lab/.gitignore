@@ -1,0 +1,11 @@
+# Gradle
+build/
+.gradle/
+
+# IDE
+.idea/
+*.iml
+.DS_Store
+
+# jOOQ generated code is committed to repository
+# Do NOT exclude src/generated/

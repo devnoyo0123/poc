@@ -1,0 +1,45 @@
+{
+  "type": "record",
+  "name": "UserEvent",
+  "namespace": "com.example.avro",
+  "fields": [
+    {
+      "name": "id",
+      "type": "string"
+    },
+    {
+      "name": "timestamp",
+      "type": "long"
+    },
+    {
+      "name": "eventType",
+      "type": ["string", "null"],
+      "default": null
+    },
+    {
+      "name": "userId",
+      "type": ["string", "null"],
+      "default": null
+    },
+    {
+      "name": "metadata",
+      "type": ["null", {
+        "type": "record",
+        "name": "EventMetadata",
+        "fields": [
+          {
+            "name": "source",
+            "type": ["string", "null"],
+            "default": null
+          },
+          {
+            "name": "version",
+            "type": ["string", "null"],
+            "default": null
+          }
+        ]
+      }],
+      "default": null
+    }
+  ]
+}

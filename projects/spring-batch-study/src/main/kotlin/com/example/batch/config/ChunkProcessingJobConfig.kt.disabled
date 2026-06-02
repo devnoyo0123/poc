@@ -1,0 +1,49 @@
+package com.example.batch.config
+
+import com.example.batch.chunk.processor.ScoreFilterProcessor
+import com.example.batch.chunk.reader.FileItemReader
+import com.example.batch.chunk.writer.ConsoleItemWriter
+import org.springframework.batch.core.Job
+import org.springframework.batch.core.Step
+import org.springframework.batch.core.job.builder.JobBuilder
+import org.springframework.batch.core.repository.JobRepository
+import org.springframework.batch.core.step.builder.StepBuilder
+import org.springframework.batch.item.ItemProcessor
+import org.springframework.batch.item.ItemReader
+import org.springframework.batch.item.ItemWriter
+import org.springframework.beans.factory.annotation.Value
+import org.springframework.context.annotation.Bean
+import org.springframework.context.annotation.Configuration
+import org.springframework.transaction.PlatformTransactionManager
+
+@Configuration
+class ChunkProcessingJobConfig(
+    private val jobRepository: JobRepository,
+    private val transactionManager: PlatformTransactionManager,
+    private val fileItemReader: FileItemReader,
+    private val scoreFilterProcessor: ScoreFilterProcessor,
+    private val consoleItemWriter: ConsoleItemWriter
+) {
+
+    @Bean
+    fun chunkProcessingJob(
+        @Value("#{jobParameters['inputFile'] ?: 'data.csv'}") inputFile: String,
+        @Value("#{jobParameters['chunkSize'] ?: '10'}") chunkSizeStr: String
+    ): Job {
+        val chunkSize = chunkSizeStr.toIntOrNull() ?: 10
+        
+        return JobBuilder("chunkProcessingJob", jobRepository)
+            .start(chunkProcessingStep(inputFile, chunkSize))
+            .build()
+    }
+
+    @Bean
+    fun chunkProcessingStep(inputFile: String, chunkSize: Int): Step {
+        return StepBuilder("chunkProcessingStep", jobRepository)
+            .chunk<Map<String, String>, Map<String, String>>(chunkSize, transactionManager)
+            .reader(fileItemReader.reader(inputFile))
+            .processor(scoreFilterProcessor)
+            .writer(consoleItemWriter)
+            .build()
+    }
+}

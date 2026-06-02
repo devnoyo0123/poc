@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  localstack:
+    image: localstack/localstack:3.5
+    container_name: s3-sqs-localstack
+    ports:
+      - "4566:4566"
+      - "4510-4559:4510-4559"
+    environment:
+      - SERVICES=s3,sqs
+      - DEBUG=1
+      - AWS_DEFAULT_REGION=ap-northeast-2
+      - AWS_ACCESS_KEY_ID=test
+      - AWS_SECRET_ACCESS_KEY=test
+    volumes:
+      - "./localstack/init:/etc/localstack/init/ready.d"
+      - "localstack_data:/var/lib/localstack"
+
+volumes:
+  localstack_data:

@@ -1,0 +1,40 @@
+package com.example.jpa.config;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
+
+import java.util.TimeZone;
+
+/**
+ * 간단한 Jackson 설정 (ISO-8601 포맷 사용)
+ *
+ * 사용하려면 JacksonConfig.java를 주석처리하고
+ * 이 파일의 확장자를 .java로 변경하세요
+ */
+// @Configuration
+public class JacksonConfigSimple {
+
+    @Bean
+    public ObjectMapper objectMapper() {
+        return Jackson2ObjectMapperBuilder.json()
+                .modules(new JavaTimeModule())
+                .featuresToDisable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS)
+                .timeZone(TimeZone.getTimeZone("Asia/Seoul"))
+                .build();
+    }
+
+    /**
+     * 결과:
+     * {
+     *   "startAt": "2026-02-26T14:00:59.123456",
+     *   "endAt": "2026-02-26T18:00:59.123456"
+     * }
+     *
+     * 장점: 코드 간단, ISO-8601 표준
+     * 단점: 마이크로초 포함
+     */
+}

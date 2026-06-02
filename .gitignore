@@ -57,3 +57,9 @@ test-results/
 *.md
 !README.md
 !*/README.md
+
+# Application configuration
+**/application.yml
+**/application-*.yml
+**/application.properties
+**/application-*.properties

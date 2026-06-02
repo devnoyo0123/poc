@@ -1,0 +1,75 @@
+spring:
+  application:
+    name: api-call-retry-save-poc
+
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+
+# Resilience4j Retry Configuration
+resilience4j:
+  retry:
+    instances:
+      apiCallRetry:
+        max-attempts: 3
+        wait-duration: 1s
+        retry-exceptions:
+          - org.springframework.web.client.HttpServerErrorException
+          - org.springframework.web.client.HttpClientErrorException$TooManyRequests
+        ignore-exceptions:
+          - org.springframework.web.client.HttpClientErrorException$BadRequest
+          - org.springframework.web.client.HttpClientErrorException$NotFound
+          - org.springframework.web.client.HttpClientErrorException$Unauthorized
+          - org.springframework.web.client.HttpClientErrorException$Forbidden
+          - org.springframework.web.client.HttpClientErrorException$MethodNotAllowed
+          - org.springframework.web.client.HttpClientErrorException$Conflict
+          - org.springframework.web.client.HttpClientErrorException$UnsupportedMediaType
+          - org.springframework.web.client.HttpClientErrorException$UnprocessableEntity
+        exponential-backoff-multiplier: 2
+        randomization-factor: 0.5
+      apiCallRetryV2:
+        max-attempts: 3
+        wait-duration: 1s
+        retry-exceptions:
+          - org.springframework.web.client.HttpServerErrorException
+          - org.springframework.web.client.HttpClientErrorException$TooManyRequests
+        ignore-exceptions:
+          - org.springframework.web.client.HttpClientErrorException$BadRequest
+          - org.springframework.web.client.HttpClientErrorException$NotFound
+          - org.springframework.web.client.HttpClientErrorException$Unauthorized
+          - org.springframework.web.client.HttpClientErrorException$Forbidden
+          - org.springframework.web.client.HttpClientErrorException$MethodNotAllowed
+          - org.springframework.web.client.HttpClientErrorException$Conflict
+          - org.springframework.web.client.HttpClientErrorException$UnsupportedMediaType
+          - org.springframework.web.client.HttpClientErrorException$UnprocessableEntity
+        exponential-backoff-multiplier: 2
+        randomization-factor: 0.5
+
+server:
+  port: 8080
+
+logging:
+  level:
+    com.example.apiretry: DEBUG
+    org.springframework.web: DEBUG
+    io.github.resilience4j: DEBUG
+
+# Slack Notification Configuration (현재는 로그만 출력)
+slack:
+  webhook-url: ${SLACK_WEBHOOK_URL}
+  enabled: true

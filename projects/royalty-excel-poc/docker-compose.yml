@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: royalty-postgres
+    ports:
+      - "5434:5432"
+    environment:
+      - POSTGRES_DB=royalty_db
+      - POSTGRES_USER=royalty_user
+      - POSTGRES_PASSWORD=royalty_pass
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./db/init:/docker-entrypoint-initdb.d
+
+  localstack:
+    image: localstack/localstack:3.5
+    container_name: royalty-localstack
+    ports:
+      - "4566:4566"
+    environment:
+      - SERVICES=s3
+      - AWS_DEFAULT_REGION=ap-northeast-2
+      - AWS_ACCESS_KEY_ID=test
+      - AWS_SECRET_ACCESS_KEY=test
+    volumes:
+      - localstack_data:/var/lib/localstack
+
+volumes:
+  postgres_data:
+  localstack_data:
