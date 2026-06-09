@@ -63,6 +63,7 @@ git add . && git commit -m "feat: add caching example"
 | [api-call-retry-save-poc](projects/api-call-retry-save-poc/) | - | API call retry with save POC | - |
 | [avro-poc](projects/avro-poc/) | Gradle (Kotlin DSL) | Avro with Schema Registry & Spring Cloud Bus POC | ✅ Complete |
 | [jobrunr-poc](projects/jobrunr-poc/) | Gradle (Groovy DSL) | JobRunr background job processing | ✅ Complete |
+| [jobrunr-debounce-poc](projects/jobrunr-debounce-poc/) | Gradle (Kotlin DSL) | JobRunr schedule + deletePermanently로 디바운싱 컨셉 증명 | ✅ Complete |
 | [jpa-capa-scheduler-poc](projects/jpa-capa-scheduler-poc/) | - | JPA capacity scheduler POC | - |
 | [jpa-concurrency-poc](projects/jpa-concurrency-poc/) | - | JPA concurrency POC | - |
 | [payment-sdk-kotlin](projects/payment-sdk-kotlin/) | - | Payment SDK in Kotlin | - |
