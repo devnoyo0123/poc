@@ -1,0 +1,16 @@
+// 기존 AsyncContext POC — Scheduler Async / CompletableFuture / Virtual Thread 비교
+// 로직은 변경 없음. 멀티모듈 분리 위해 별도 build.gradle 로 이동.
+plugins {
+    id 'org.springframework.boot'
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}

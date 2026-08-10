@@ -1,0 +1,12 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: tomcat_hikari_timeout
+      POSTGRES_USER: poc
+      POSTGRES_PASSWORD: poc
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U poc -d tomcat_hikari_timeout"]
+      interval: 5s
+      timeout: 3s
+      retries: 10

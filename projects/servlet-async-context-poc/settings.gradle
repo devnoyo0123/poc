@@ -1,0 +1,10 @@
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+    }
+}
+
+rootProject.name = 'servlet-async-context-poc'
+
+include 'app-async-context'
+include 'app-vt-jpa'

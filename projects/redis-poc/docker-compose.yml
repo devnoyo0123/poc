@@ -1,0 +1,61 @@
+services:
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    command: redis-server --appendonly yes
+    volumes:
+      - redis-data:/data
+
+  ws-gateway-1:
+    build:
+      context: .
+      dockerfile: ws-gateway/Dockerfile
+    environment:
+      - REDIS_HOST=redis
+      - INSTANCE_ID=ws-gateway-1
+      - SERVER_PORT=8081
+    depends_on:
+      - redis
+    ports:
+      - "8081:8081"
+
+  ws-gateway-2:
+    build:
+      context: .
+      dockerfile: ws-gateway/Dockerfile
+    environment:
+      - REDIS_HOST=redis
+      - INSTANCE_ID=ws-gateway-2
+      - SERVER_PORT=8081
+    depends_on:
+      - redis
+    ports:
+      - "8082:8081"
+
+  api-server:
+    build:
+      context: .
+      dockerfile: api-server/Dockerfile
+    environment:
+      - REDIS_HOST=redis
+      - INSTANCE_ID=api-server
+      - SERVER_PORT=8080
+    depends_on:
+      - redis
+    ports:
+      - "8080:8080"
+
+  nginx:
+    image: nginx:alpine
+    volumes:
+      - ./docker/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    ports:
+      - "80:80"
+    depends_on:
+      - ws-gateway-1
+      - ws-gateway-2
+      - api-server
+
+volumes:
+  redis-data:

@@ -1,0 +1,26 @@
+# Gradle
+.gradle/
+build/
+!gradle/wrapper/gradle-wrapper.jar
+
+# jOOQ generated (codegen 산출물 — 빌드 시 재생성됨)
+build/generated-jooq/
+
+# IDE
+.idea/
+*.iml
+*.iws
+*.ipr
+.vscode/
+.project
+.classpath
+.settings/
+
+# Kotlin
+*.kotlin_metadata
+
+# OS
+.DS_Store
+
+# Logs
+*.log

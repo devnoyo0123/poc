@@ -1,0 +1,23 @@
+services:
+  mysql:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: txdemo
+      MYSQL_USER: txuser
+      MYSQL_PASSWORD: txpass
+    ports:
+      - "3308:3306"
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-ptxpass"]
+      interval: 3s
+      timeout: 3s
+      retries: 20
+
+  wiremock:
+    image: wiremock/wiremock:3.6.0
+    ports:
+      - "8089:8080"
+    volumes:
+      - ./wiremock/mappings:/home/wiremock/mappings:ro
+    command: ["--verbose"]

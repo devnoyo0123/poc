@@ -1,0 +1,18 @@
+// 신규 VT + JPA 실험 모듈 — 가상 스레드 환경에서 JPA 병렬 조회 성능 검증
+// 엔트리포인트: com.poc.vtjpa.VtJpaPocApplication
+plugins {
+    id 'org.springframework.boot'
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    runtimeOnly    'org.postgresql:postgresql'
+    compileOnly    'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}

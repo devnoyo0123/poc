@@ -1,0 +1,11 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/external/ok"
+  },
+  "response": {
+    "status": 200,
+    "body": "OK",
+    "headers": { "Content-Type": "text/plain" }
+  }
+}

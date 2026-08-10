@@ -1,0 +1,32 @@
+# PostgreSQL for VT + JPA experiment
+# usage:
+#   docker compose -f infra/postgres/docker-compose.yml up -d
+#   docker compose -f infra/postgres/docker-compose.yml down
+services:
+  postgres:
+    image: postgres:16
+    container_name: vtjpa-postgres
+    environment:
+      POSTGRES_DB: vtjpa
+      POSTGRES_USER: vtjpa
+      POSTGRES_PASSWORD: vtjpa
+    ports:
+      - "5435:5432"
+    command:
+      - "postgres"
+      - "-c"
+      - "max_connections=300"           # HikariCP pool=50 실험 여유
+      - "-c"
+      - "shared_buffers=256MB"
+      - "-c"
+      - "log_min_duration_statement=0"  # 모든 쿼리 로깅 — 병목 관찰용
+    volumes:
+      - vtjpa-pg-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U vtjpa -d vtjpa"]
+      interval: 3s
+      timeout: 3s
+      retries: 10
+
+volumes:
+  vtjpa-pg-data:

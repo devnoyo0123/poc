@@ -1,0 +1,11 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/external/unstable"
+  },
+  "response": {
+    "status": 500,
+    "body": "external API 5xx",
+    "headers": { "Content-Type": "text/plain" }
+  }
+}

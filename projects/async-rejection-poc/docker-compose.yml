@@ -1,0 +1,12 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: async_rejection
+      POSTGRES_USER: poc
+      POSTGRES_PASSWORD: poc
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U poc -d async_rejection"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
