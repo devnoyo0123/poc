@@ -63,3 +63,9 @@ test-results/
 **/application-*.yml
 **/application.properties
 **/application-*.properties
+
+# tdd-lab experiment: include spec/journal/config (experiment artifacts, no secrets)
+!projects/tdd-lab/SPEC.md
+!projects/tdd-lab/JOURNAL.md
+!projects/tdd-lab/**/application.yml
+!projects/tdd-lab/**/application-*.yml

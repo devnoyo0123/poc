@@ -1,0 +1,1 @@
+-- Placeholder migration. Real schema migrations will be added per-domain as TDD progresses.
