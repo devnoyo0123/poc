@@ -4,6 +4,7 @@ import com.example.lab.domain.auth.User
 
 interface UserLoadPort {
     fun findByEmail(email: String): User?
+    fun findById(id: Long): User?
 }
 
 interface AccessTokenIssuer {
